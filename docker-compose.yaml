@@ -118,6 +118,7 @@ services:
       - TELEMETRY_ENABLED=true
       - DEPLOYMENT_TYPE=docker-standalone-amd
       - DOT_METRICS_ENABLED=true
+      - SIGNOZ_JWT_SECRET=supersecret
     healthcheck:
       test:
         - CMD
@@ -130,6 +131,7 @@ services:
       retries: 3
     networks:
       - mainnet
+      - signoz-net
   otel-collector:
     !!merge <<: *db-depend
     image: signoz/signoz-otel-collector:${OTELCOL_TAG:-v0.129.2}
